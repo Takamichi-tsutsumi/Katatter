@@ -1,2 +1,5 @@
 <% provide(:title, @user.name)  %>
 <h1><%= @user.name %></h1>
+<p>
+  <%= link_to 'Sign out', signout_path, { method: :delete } %>
+</p>
