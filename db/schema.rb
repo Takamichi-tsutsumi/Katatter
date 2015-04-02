@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402005343) do
+ActiveRecord::Schema.define(version: 20150402145152) do
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id"
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "tweets", force: :cascade do |t|
     t.string   "tubuyaki"
@@ -26,11 +37,12 @@ ActiveRecord::Schema.define(version: 20150402005343) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "remember_token"
     t.string   "userid"
-    t.string   "image"
+    t.string   "image",           default: "egg.png"
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"

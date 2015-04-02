@@ -1,0 +1,36 @@
+ <%= render 'shared/error_messages' , object: f.object %>
+ <%= f.label :name %>
+ <%= f.text_field :name %>
+
+
+ <%= f.label :userid %><small>@から始まる半角英数文字列</small>
+ <%= f.text_field :userid %>
+ <br>
+
+ <%= f.label :email %>
+ <%= f.text_field :email %>
+
+ <%= f.label :password %>
+ <%= f.password_field :password %>
+
+ <%= f.label :confirm %><small>確認のためもう一度入力ください</small>
+ <%= f.password_field :password_confirmation %><br>
+
+ <% if @user.image? %>
+   <div class="thumbnail">
+     <%= image_tag @user.image.url %>
+   </div>
+
+ <% end %><br>
+ <%= f.label :image %>
+ <%= f.file_field :image %>
+ <%= f.hidden_field :image_cache %>
+
+
+<!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+<% if @user.persisted? && @user.image? %>
+ <label>
+   <%= f.check_box :remove_image %>
+   画像を削除
+ </label>
+<% end %>

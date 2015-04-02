@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :admin_user, only: :destroy
+
   def new
     @user = User.new
   end
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def create
@@ -14,8 +16,7 @@ class UsersController < ApplicationController
       flash[:success] = "An account successfully created!!"
       redirect_to @user
     else
-      #flash[:error] = render '/shared/error_messages', object: @user
-      redirect_to signup_path, alert: '書式が不適切です。'
+      render 'new'
     end
   end
 
@@ -25,9 +26,19 @@ class UsersController < ApplicationController
     @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_url
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_token, :image, :image_cache, :remove_image)
+    params.require(:user).permit(:name, :email, :userid, :password, :password_confirmation, :image, :image_cache, :remove_image)
+  end
+
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
   end
 end
