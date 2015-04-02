@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tubuyaki: MyString
+  user_id: 1
+  fav_count: 1
+  ret_count: 1
+
+two:
+  tubuyaki: MyString
+  user_id: 1
+  fav_count: 1
+  ret_count: 1

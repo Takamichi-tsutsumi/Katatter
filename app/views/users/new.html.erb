@@ -1,21 +1,54 @@
 <% provide(:title, "New User") %>
 
 <h1>Create an account!!</h1>
-<%= form_for(@user) do |f| %>
-<div class="field">
-<%= f.label :name %>
-<%= f.text_field :name, size: 30, maxlength: 50 %><br>
-
-<%= f.label :email %>
-<%= f.text_field :email, size: 30, maxlength: 255 %><br>
-
-<%= f.label :password %>
-<%= f.password_field :password, size: 30 %><br>
-
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation, size: 30 %><br>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+     <%= render 'shared/error_messages' %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :userid %>
+      <%= f.text_field :userid %><br>
+      <small>@から始まる半角英数文字列</small>
+    </div>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label :confirm %>
+      <%= f.password_field :password_confirmation %><br>
+      <small>確認のためもう一度入力ください</small>
+    </div>
+    <div class="field">
+      <% if @user.image? %>
+        <div class="thumbnail">
+          <%= image_tag @user.image.url %>
+        </div>
+      <% end %><br>
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+    <div class="field">
+    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+    <% if @user.persisted? && @user.image? %>
+      <label>
+        <%= f.check_box :remove_image %>
+        画像を削除
+      </label>
+    <% end %>
+  </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign Up!" %>
+    <% end %>
+  </div>
 </div>
-<div class="actions">
-<%= f.submit "Sign Up!" %>
-</div>
-<% end %>

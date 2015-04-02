@@ -1,5 +1,23 @@
 <% provide(:title, @user.name)  %>
-<h1><%= @user.name %></h1>
-<p>
-  <%= link_to 'Sign out', signout_path, { method: :delete } %>
-</p>
+<div class="row">
+  <p>
+    <% if @user.image? %>
+      <div class="thumbnail">
+        <%= image_tag @user.image.url %>
+      </div>
+      <% else %>
+      <div class="thumbnail">
+        <%= image_tag("egg.png") %>
+      </div>
+    <% end %>
+  </p>
+  <p>
+    <%= @user.name %>
+  </p>
+  <div class="span8">
+    <% if @user.tweets.any? %>
+      <h3><%= @user.tweets.count %> tweets</h3>
+      <%= render 'shared/feed' %>
+    <% end %>
+  </div>
+</div
