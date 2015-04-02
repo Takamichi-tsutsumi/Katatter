@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
+  before_action :signed_in_user, only: :edit
 
   def new
     @user = User.new
@@ -17,6 +18,19 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 

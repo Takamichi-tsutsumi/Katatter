@@ -1,5 +1,11 @@
 <li>
-  <%= image_tag @user.image.url, size: 52 %>
+  <% if user.image.nil? %>
+  <div class="thumbnail">
+    <%= image_tag("egg.png") %>
+  </div>
+  <% else %>
+  <%= image_tag user.image.url, size: 52 %>
+  <% end %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
