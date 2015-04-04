@@ -1,6 +1,7 @@
 <% provide(:title, @user.name)  %>
 <div class="row">
-  <p>
+  <aside class="span4">
+    <section>
     <% if @user.image? %>
       <div class="thumbnail">
         <%= image_tag @user.image.url %>
@@ -10,11 +11,11 @@
         <%= image_tag("egg.png") %>
       </div>
     <% end %>
-  </p>
-  <p>
     <%= @user.name %>
-  </p>
+    </section>
+  </aside>
   <div class="span8">
+    <%= render 'follow_form' if signed_in? %>
     <% if @user.tweets.any? %>
       <h3><%= @user.tweets.count %> tweets</h3>
       <%= render 'shared/feed' %>

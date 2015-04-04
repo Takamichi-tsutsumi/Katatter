@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resources 'users'
+  resources 'users' do
+    member do
+      get :following, :followers
+    end
+  end
   resources 'sessions', only: [:new, :create, :destroy]
   resources 'tweets'
+  resources 'relationships', only: [:create, :destroy]
   root 'static_pages#home'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/signup', to: 'users#new', via: 'get'

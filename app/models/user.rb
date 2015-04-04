@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   before_save { self.email = email.downcase}
   before_create :create_remember_token
-  
+
   mount_uploader :image, ImageUploader
 
   validates :name,
@@ -34,33 +34,37 @@ class User < ActiveRecord::Base
     uniqueness: true,
     format: { with:  VALID_USERID_REGEX }
 
-    def User.new_remember_token
-      SecureRandom.urlsafe_base64
-    end
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
 
-    def User.encrypt(token)
-      Digest::SHA1.hexdigest(token.to_s)
-    end
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
 
-    def feed
-      Tweet.where("user_id = ?", id)
-    end
+  def feed
+    Tweet.where("user_id = ?", id)
+  end
 
-    def following?(other_user)
-      relationships.find_by(followed_id: other_user.id)
-    end
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
 
-    def follow!(other_user)
-      relationships.create!(followed_id: other_user.id)
-    end
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
 
-    def unfollow!(other_user)
-      relationships.find_by(followed_id: otheruser.id).destroy
-    end
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
+  end
 
-    private
+  def feed
+    Tweet.from_users_followed_by(self)
+  end
 
-    def create_remember_token
-      self.remember_token = User.encrypt(User.new_remember_token)
-    end
+  private
+
+  def create_remember_token
+    self.remember_token = User.encrypt(User.new_remember_token)
+  end
 end
