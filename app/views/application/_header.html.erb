@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <%= link_to "Katatter", root_path, class: "navbar-brand" %>
+       <%= link_to "Home", root_path, class: "navbar-brand" %>
       <!--<a class="navbar-brand" href="#"></a>-->
     </div>
 
@@ -21,7 +21,8 @@
         <button type="submit" class="btn btn-default">さがす</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li> <%= link_to "すべてのユーザー", users_path %></li>
+        <li> <%= link_to "ユーザーをさがす", users_path %></li>
+        <li> <%= link_to "ツイート検索", tweets_path %> </li>
         <% if signed_in? %>
         <li><%= link_to "設定", edit_user_path(current_user.id) %></li>
         <li><%= link_to "ログアウト", signout_path, {method: :delete} %></li>

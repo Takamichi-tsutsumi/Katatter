@@ -18,7 +18,12 @@ class TweetsController < ApplicationController
   end
 
   def index
-    @tweet = Tweet.find(params[:id])
+    @search = Tweet.search(params[:q])
+    @tweets = @search.result.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.json { render json: @topics }
+    end
   end
 
   private

@@ -11,13 +11,12 @@
         <%= image_tag("egg.png") %>
       </div>
     <% end %>
-    <%= @user.name %>
     </section>
+    <%= render "/shared/user_info" %>
   </aside>
   <div class="span8">
     <%= render 'follow_form' if signed_in? %>
     <% if @user.tweets.any? %>
-      <h3><%= @user.tweets.count %> tweets</h3>
       <ul class="tweets">
         <%= render @tweets %>
       </ul>

@@ -3,9 +3,9 @@
     <%= image_tag @user.image.url %>
   </div>
   <span class="user">
-    <%= link_to feed_item.user.name, feed_item.user %>
+    <%= link_to feed_item.user.name, feed_item.user %> <small><%= feed_item.user.userid %></small>
   </span><br>
-  <span class="tubuyaki"><%= feed_item.tubuyaki %></span><br>
+  <span class="tubuyaki"><%= wrap(simple_format(feed_item.tubuyaki)) %></span><br>
   <span class="timestamp">
     <small>Tweeted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
   </span>

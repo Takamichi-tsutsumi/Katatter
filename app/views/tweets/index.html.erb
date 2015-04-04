@@ -1,0 +1,16 @@
+<h2>ツイートを探す</h2>
+<%= search_form_for @search do |f| %>
+  <%= f.label :tubuyaki_cont, "ことば" %>
+  <%= f.text_field :tubuyaki_cont %>
+  <div class="action">
+    <%= f.submit 'さがす' %>
+  </div>
+<% end %>
+
+<%= will_paginate %>
+<% @tweets.each do |tweet| %>
+  <ul class="tweets">
+    <%= render tweet %>
+  </ul>
+<% end %>
+<%= will_paginate %>

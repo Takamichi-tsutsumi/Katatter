@@ -7,7 +7,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @search = User.search(params[:q])
+    @users = @search.result.paginate(page: params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @users }
+    end
   end
 
   def create
@@ -37,7 +43,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @tweets = @user.tweets.paginate(page: params[:page], per_page: 10)
-    @feed_items = current_user.feed.paginate(page: params[:page])
+    @feed_items = @user.feed.paginate(page: params[:page])
   end
 
   def destroy

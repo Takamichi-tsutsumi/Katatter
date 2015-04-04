@@ -1,8 +1,8 @@
 <li id="<%= tweet.id %>">
   <span class="user">
-    <%= link_to tweet.user.name, tweet.user %>
+    <%= link_to tweet.user.name, tweet.user %> <small> <%= tweet.user.userid %> </small>
   </span><br>
-  <span class="tubuyaki"><%= tweet.tubuyaki %></span><br>
+  <span class="tubuyaki"><%= wrap(simple_format(tweet.tubuyaki)) %></span><br>
   <span class="timestamp">
     <small>Tweeted <%= time_ago_in_words(tweet.created_at) %> ago.</small>
   </span>

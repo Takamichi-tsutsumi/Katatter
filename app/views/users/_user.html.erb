@@ -6,9 +6,11 @@
   <% else %>
   <%= image_tag user.image.url, size: 52 %>
   <% end %>
-  <%= link_to user.name, user %>
+  <%= link_to user.name, user %> <small><%= user.userid %></small>
+  <% unless current_user.nil? %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
+  <% end %>
   <% end %>
 </li>

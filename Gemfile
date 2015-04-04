@@ -33,6 +33,8 @@ gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 
 gem 'faker'
+
+gem 'ransack'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
