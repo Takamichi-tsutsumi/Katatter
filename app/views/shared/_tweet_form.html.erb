@@ -2,6 +2,7 @@
 <%= render 'shared/error_messages', object: f.object %>
 <div class="field">
   <%= f.text_area :tubuyaki, placeholder: "今何してる？" %>
+  <%= f.file_field :image %>
 </div>
   <%= f.submit "つぶやく", class: "btn btn-large btn-primary"%>
 <% end %>

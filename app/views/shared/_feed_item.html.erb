@@ -1,11 +1,14 @@
 <li id="<%= feed_item.id %>">
-  <div class="thumbnail">
+  <!-- <div class="thumbnail">
     <%= image_tag @user.image.url %>
-  </div>
+  </div> -->
   <span class="user">
     <%= link_to feed_item.user.name, feed_item.user %> <small><%= feed_item.user.userid %></small>
   </span><br>
   <span class="tubuyaki"><%= wrap(simple_format(feed_item.tubuyaki)) %></span><br>
+  <% unless feed_item.image.nil? %>
+    <%= link_to image_tag(feed_item.image), large_img, :'data-lightbox' => image.id %>
+  <% end %>
   <span class="timestamp">
     <small>Tweeted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
   </span>

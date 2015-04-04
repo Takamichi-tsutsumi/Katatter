@@ -1,9 +1,13 @@
 class Tweet < ActiveRecord::Base
   belongs_to :user
   default_scope -> { order('created_at DESC') }
+
+  mount_uploader :image
+
   validates  :tubuyaki,
-    presence: true,
-    length: { maximum: 255 }
+    length: { maximum: 255 },
+    presence: true
+
   validates :user_id,
     presence: true
 

@@ -1,8 +1,10 @@
 class TweetsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
+
   def create
-    @tweet = current_user.tweets.build(tweet_params)
+    @user = current_user
+    @tweet = @user.tweets.build(tweet_params)
     if @tweet.save
       flash[:success] = "Tweeted!"
       redirect_to root_path
@@ -29,7 +31,7 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
-    params.require(:tweet).permit(:tubuyaki, :id, :user_id)
+    params.require(:tweet).permit(:tubuyaki, :id, :user_id, :image, :image_cache, :remove_image)
   end
 
   def correct_user
