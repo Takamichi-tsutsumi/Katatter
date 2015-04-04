@@ -1,9 +1,7 @@
 <%= form_for(@tweet) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 <div class="field">
-  <%= f.text_area :tubuyaki, placdholder: "今何してる？" %>
+  <%= f.text_area :tubuyaki, placeholder: "今何してる？" %>
 </div>
-<div class="action">
-  <%= f.submit "つぶやく", class: "btn btn-largr btn-primary"%>
-</div>
+  <%= f.submit "つぶやく", class: "btn btn-large btn-primary"%>
 <% end %>

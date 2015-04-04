@@ -18,7 +18,10 @@
     <%= render 'follow_form' if signed_in? %>
     <% if @user.tweets.any? %>
       <h3><%= @user.tweets.count %> tweets</h3>
-      <%= render 'shared/feed' %>
+      <ul class="tweets">
+        <%= render @tweets %>
+      </ul>
+      <%= will_paginate @tweets %>
     <% end %>
   </div>
 </div

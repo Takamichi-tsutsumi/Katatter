@@ -1,9 +1,12 @@
-<li>
+<li id="<%= tweet.id %>">
+  <span class="user">
+    <%= link_to tweet.user.name, tweet.user %>
+  </span><br>
   <span class="tubuyaki"><%= tweet.tubuyaki %></span><br>
   <span class="timestamp">
-    <small>Tweeted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
+    <small>Tweeted <%= time_ago_in_words(tweet.created_at) %> ago.</small>
   </span>
   <% if current_user?(tweet.user) %>
-    <%= link_to "消す", tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: tweet.content %>
+    <%= link_to "消す", tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: tweet.tubuyaki %>
   <% end %>
 </li>
