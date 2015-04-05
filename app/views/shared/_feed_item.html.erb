@@ -6,9 +6,12 @@
     <%= link_to feed_item.user.name, feed_item.user %> <small><%= feed_item.user.userid %></small>
   </span><br>
   <span class="tubuyaki"><%= wrap(simple_format(feed_item.tubuyaki)) %></span><br>
-  <% unless feed_item.image.nil? %>
-    <%= link_to image_tag(feed_item.image), large_img, :'data-lightbox' => image.id %>
+  <span>
+  <% if feed_item.image.to_s.empty? %>
+  <% else %>
+  <%= link_to "image", feed_item.image.url.to_s, :'data-lightbox' => image_tag(feed_item.image_url) %>
   <% end %>
+  </span>
   <span class="timestamp">
     <small>Tweeted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
   </span>
