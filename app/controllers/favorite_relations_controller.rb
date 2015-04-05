@@ -6,7 +6,7 @@ class FavoriteRelationsController < ApplicationController
     @user = current_user
     @user.favorite!(@tweet)
     respond_to do |format|
-      format.html { redirect_to @tweet.user }
+      format.html { redirect_to(:back) }
       format.js
     end
   end
@@ -16,7 +16,7 @@ class FavoriteRelationsController < ApplicationController
     @user = current_user
     current_user.unfavorite!(@tweet)
     respond_to do |format|
-      format.html { redirect_to @tweet.user }
+      format.html { redirect_to(:back) }
       format.js
     end
   end

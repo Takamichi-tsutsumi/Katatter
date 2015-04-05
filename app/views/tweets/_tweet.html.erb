@@ -12,12 +12,12 @@
   <% else %>
     <% if current_user.favorite?(tweet) %>
       <%= form_for(current_user.favorite_relations.find_by(favorite_tweet_id: tweet.id), html: { method: :delete } ) do |f| %>
-      <%= f.submit "★" %>
+      <%= f.submit "★", class: "btn btn-primary" %>
       <% end %>
     <% else %>
       <%= form_for(current_user.favorite_relations.build(favorite_tweet_id: tweet.id)) do |f| %>
       <div> <%= f.hidden_field :favorite_tweet_id %> </div>
-        <%= f.submit "☆" %>
+        <%= f.submit "☆", class: "btn btn-primary" %>
       <% end %>
     <% end %>
   <% end %>

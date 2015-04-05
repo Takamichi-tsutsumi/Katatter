@@ -18,8 +18,10 @@
       <%= @user.tweets.count %>
     </strong>
   </a>
+  <a href="<%= favorites_user_path(@user) %>">
   お気に入り
   <strong id="favorites" class="stat">
     <%= @user.favorite_tweets.count %>
   </strong>
+</a>
 </div>

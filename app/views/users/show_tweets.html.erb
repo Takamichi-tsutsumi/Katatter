@@ -1,0 +1,26 @@
+<% provide(:title, @user.name)  %>
+<div class="row">
+  <aside class="span4">
+    <section>
+    <% if @user.image? %>
+      <div class="thumbnail">
+        <%= image_tag @user.image.url %>
+      </div>
+      <% else %>
+      <div class="thumbnail">
+        <%= image_tag("egg.png") %>
+      </div>
+    <% end %>
+    </section>
+    <%= render "/shared/user_info" %>
+  </aside>
+  <div class="span8">
+    <%= render 'follow_form' if signed_in? %>
+    <% if @user.tweets.any? %>
+      <ul class="tweets">
+        <%= render @tweets %>
+      </ul>
+      <%= will_paginate @tweets %>
+    <% end %>
+  </div>
+</div
