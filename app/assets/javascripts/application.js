@@ -15,6 +15,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-//= require js/lightbox
 //= require jquery-ui/widget
 //= require jquery-ui/droppable
