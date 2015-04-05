@@ -1,24 +1,26 @@
 <li id="<%= tweet.id %>">
-  <span class="user">
-    <%= link_to tweet.user.name, tweet.user %> <small> <%= tweet.user.userid %> </small>
-  </span><br>
-  <span class="tubuyaki"><%= wrap(simple_format(tweet.tubuyaki)) %></span><br>
-  <span class="timestamp">
-    <small>Tweeted <%= time_ago_in_words(tweet.created_at) %> ago.</small>
-  </span>
+  <a href="<%= tweet_path(tweet.id) %>">
+    <span class="user">
+      <%= link_to tweet.user.name, tweet.user %> <small> <%= tweet.user.userid %> </small>
+    </span><br>
+    <span class="tubuyaki"><%= wrap(simple_format(tweet.tubuyaki)) %></span><br>
+    <span class="timestamp">
+      <small>Tweeted <%= time_ago_in_words(tweet.created_at) %> ago.</small>
+    </span>
 
-  <% if current_user?(tweet.user) %>
-    <%= link_to "消す", tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: tweet.tubuyaki %>
-  <% else %>
-    <% if current_user.favorite?(tweet) %>
-      <%= form_for(current_user.favorite_relations.find_by(favorite_tweet_id: tweet.id), html: { method: :delete } ) do |f| %>
-      <%= f.submit "★", class: "btn btn-primary" %>
-      <% end %>
+    <% if current_user?(tweet.user) %>
+      <%= link_to "消す", tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: tweet.tubuyaki %>
     <% else %>
-      <%= form_for(current_user.favorite_relations.build(favorite_tweet_id: tweet.id)) do |f| %>
-      <div> <%= f.hidden_field :favorite_tweet_id %> </div>
-        <%= f.submit "☆", class: "btn btn-primary" %>
+      <% if current_user.favorite?(tweet) %>
+        <%= form_for(current_user.favorite_relations.find_by(favorite_tweet_id: tweet.id), html: { method: :delete } ) do |f| %>
+        <%= f.submit "★", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.favorite_relations.build(favorite_tweet_id: tweet.id)) do |f| %>
+        <div> <%= f.hidden_field :favorite_tweet_id %> </div>
+          <%= f.submit "☆", class: "btn btn-primary" %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </a>
 </li>
