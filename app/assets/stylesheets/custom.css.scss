@@ -43,7 +43,7 @@ h1 {
 	font-size: 3em;
 	letter-spacing: -2px;
 	margin-bottom: 30px;
-	// text-align: center;
+	text-align: center;
 }
 
 h2 {
@@ -173,13 +173,13 @@ aside {
 .tweets {
   list-style: none;
   margin: 10px 0 0 0;
-  overflow: auto;
+
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
 }
-.content {
+.tubuyaki {
   display: block;
 }
 .timestamp {
@@ -191,7 +191,7 @@ aside {
 }
 aside {
   textarea {
-    height: 100px;
+    height: 80px;
     margin-bottom: 5px;
   }
 }

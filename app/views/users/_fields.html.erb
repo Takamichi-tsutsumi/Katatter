@@ -17,8 +17,8 @@
  <%= f.password_field :password_confirmation %><br>
 
  <% if @user.image? %>
-   <div class="thumbnail">
-     <%= image_tag @user.image.url %>
+   <div>
+     <%= image_tag @user.image.url(:thumb) %>
    </div>
 
  <% end %><br>

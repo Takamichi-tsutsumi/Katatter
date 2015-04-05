@@ -1,12 +1,14 @@
-<h1>Users</h1>
+<h1>ユーザーを探す</h1>
+<div class="col-md-4">
 <%= search_form_for @search do |f| %>
   <%= f.label :name_cont, "ユーザー名" %>
   <%= f.text_field :name_cont %>
   <div class="action">
-    <%= f.submit 'さがす' %>
+    <%= f.submit 'さがす', class: "btn btn-primary btn-large"%>
   </div>
   <% end %>
-
+</div>
+<div class="col-md-8">
 <%= will_paginate %>
 
 <% @users.each do |user| %>
@@ -16,3 +18,4 @@
 <% end %>
 
 <%= will_paginate %>
+</div>

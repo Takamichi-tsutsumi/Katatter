@@ -1,5 +1,12 @@
 <li id="<%= tweet.id %>">
   <a href="<%= tweet_path(tweet.id) %>">
+    <div>
+      <% if tweet.user.image? %>
+      <%= image_tag tweet.user.image.url(:thumb) %>
+      <% else %>
+      <%= image_tag("egg.png", width: "50", height: "50") %>
+      <% end %>
+    </div>
     <span class="user">
       <%= link_to tweet.user.name, tweet.user %> <small> <%= tweet.user.userid %> </small>
     </span><br>

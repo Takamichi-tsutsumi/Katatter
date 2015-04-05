@@ -1,7 +1,11 @@
 <li id="<%= feed_item.id %>">
-  <!-- <div class="thumbnail">
-    <%= image_tag @user.image.url %>
-  </div> -->
+  <div>
+    <% if feed_item.user.image? %>
+    <%= image_tag feed_item.user.image.url(:thumb) %>
+    <% else %>
+    <%= image_tag("egg.png", width: "50", height: "50") %>
+    <% end %>
+  </div>
   <span class="user">
     <%= link_to feed_item.user.name, feed_item.user %> <small><%= feed_item.user.userid %></small>
   </span><br>

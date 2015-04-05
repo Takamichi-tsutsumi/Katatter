@@ -1,6 +1,6 @@
 <% if signed_in? %>
   <div class="row">
-    <aside class="span4">
+    <aside class="col-md-4 sidebar-nav fix">
       <section>
         <%= render 'shared/user_info' %>
       </section>
@@ -8,13 +8,13 @@
         <%= render 'shared/tweet_form' %>
       </section>
     </aside>
-    <div class="span4">
-      <h3>Timeline</h3>
-      <%= render 'shared/feed' %>
-    </div>
+  <div class="col-md-8">
+    <h3 class="center">Timeline</h3>
+    <%= render 'shared/feed' %>
   </div>
+</div>
 <% else %>
-  <div class="centfer hero-unit">
+  <div class="center hero-unit">
     <h1>welcome to katatter</h1>
     <h3>ログイン</h3>
 
@@ -25,11 +25,9 @@
       <%= f.label :password %>
       <%= f.password_field :password, size: 30 %>
     </div>
-    <div class="actions">
-      <%= f.submit 'ログイン' , class: "btn btn-primary btn-large"%>
-    </div>
+      <%= f.submit 'ログイン' , class: "btn btn-large btn-primary"%>
     <% end %>
-    ユーザー登録をして今から始める! <br>  
+    ユーザー登録をして今から始める! <br>
     <%= link_to "ユーザ登録する", signup_path, class:"btn btn-large btn-primary" %>
   </div>
 <% end %>

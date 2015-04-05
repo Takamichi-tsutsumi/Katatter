@@ -1,20 +1,20 @@
 <% provide(:title, @user.name)  %>
 <div class="row">
-  <aside class="span4">
+  <aside class="col-md-4">
     <section>
     <% if @user.image? %>
-      <div class="thumbnail">
-        <%= image_tag @user.image.url %>
+      <div>
+        <%= image_tag @user.image.url(:thumb) %>
       </div>
       <% else %>
-      <div class="thumbnail">
-        <%= image_tag("egg.png") %>
+      <div>
+        <%= image_tag("egg.png", width: "50", height: "50") %>
       </div>
     <% end %>
     </section>
     <%= render "/shared/user_info" %>
   </aside>
-  <div class="span8">
+  <div class="col-md-8">
     <%= render 'follow_form' if signed_in? %>
     <% if @user.tweets.any? %>
       <ul class="tweets">

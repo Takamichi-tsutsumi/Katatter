@@ -1,6 +1,6 @@
 <% provide(:title, @title) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="col-md-4">
     <section>
       <h1><%= @user.name %></h1>
       <span> <%= link_to "view my profile", @user %></span>
@@ -8,20 +8,9 @@
     </section>
     <section>
       <%= render 'shared/stats' %>
-      <% if @users.any? %>
-      <div class="user_avatars">
-        <% @users.each do |user| %>
-        <% if @user.image.nil? %>
-        <%= image_tag ("egg.png") %>
-        <% else %>
-        <%= image_tag @user.image.url %>
-        <% end %>
-        <% end %>
-      </div>
-      <% end %>
     </section>
   </aside>
-  <div class="span9">
+  <div class="col-md-8">
     <h3> <%= @title %> </h3>
     <% if @users.any? %>
       <ul class="users">
