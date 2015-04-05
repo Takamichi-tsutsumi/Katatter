@@ -16,6 +16,20 @@
 <% else %>
   <div class="centfer hero-unit">
     <h1>welcome to katatter</h1>
-    <%= link_to "Sign up", signup_path, class:"btn btn-large btn-primary" %>
+    <h3>ログイン</h3>
+
+    <%= form_for(:session, url: sessions_path) do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email, size: 30 %>
+      <%= f.label :password %>
+      <%= f.password_field :password, size: 30 %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'ログイン' , class: "btn btn-primary btn-large"%>
+    </div>
+    <% end %>
+    ユーザー登録をして今から始める! <br>  
+    <%= link_to "ユーザ登録する", signup_path, class:"btn btn-large btn-primary" %>
   </div>
 <% end %>
