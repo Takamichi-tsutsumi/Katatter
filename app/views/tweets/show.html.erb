@@ -21,9 +21,8 @@
       <% else %>
         <%= form_for(current_user.favorite_relations.build(favorite_tweet_id: @tweet.id)) do |f| %>
         <div> <%= f.hidden_field :favorite_tweet_id %> </div>
-          <%= f.submit "☆", class: "btn, btn-primary" %>
+          <%= f.submit "☆", class: "btn  btn-primary" %>
         <% end %>
       <% end %>
     <% end %>
-  </div>
 </div>

@@ -119,6 +119,10 @@ footer {
 /*sidebar*/
 
 aside {
+  .user-info {
+    @include box_sizing;
+    border: border-box;
+  }
 	section {
 		padding: 10px 0;
 		border-top: 1px solid grayLighter;
@@ -204,6 +208,10 @@ input, textarea, select, .uneditable-input {
 	padding: 10px;
 	margin-bottom: 15px;
 	@include box-sizing;
+}
+
+.btn {
+  width: auto;
 }
 
 input {

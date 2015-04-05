@@ -2,15 +2,6 @@
 <div class="row">
   <aside class="col-md-4">
     <section>
-    <% if @user.image? %>
-      <div>
-        <%= image_tag @user.image.url(:thumb) %>
-      </div>
-      <% else %>
-      <div>
-        <%= image_tag("egg.png", width: "50", height: "50") %>
-      </div>
-    <% end %>
     <%= render "/shared/user_info" %>
     </section>
   </aside>

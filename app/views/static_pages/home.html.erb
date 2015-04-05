@@ -9,13 +9,15 @@
       </section>
     </aside>
   <div class="col-md-8">
-    <h3 class="center">Timeline</h3>
+    <h3 class>Timeline</h3>
     <%= render 'shared/feed' %>
   </div>
 </div>
 <% else %>
-  <div class="center hero-unit">
-    <h1>welcome to katatter</h1>
+  <div class="hero-unit">
+    <h1 class="center">welcome to katatter</h1>
+    <div class="col-md-4">
+
     <h3>ログイン</h3>
 
     <%= form_for(:session, url: sessions_path) do |f| %>
@@ -25,9 +27,13 @@
       <%= f.label :password %>
       <%= f.password_field :password, size: 30 %>
     </div>
-      <%= f.submit 'ログイン' , class: "btn btn-large btn-primary"%>
+      <%= f.submit 'ログイン' , class: "btn btn-primary"%>
     <% end %>
-    ユーザー登録をして今から始める! <br>
+    </div>
+    <br>
+    <p>
+    ユーザー登録をして今から始める!
     <%= link_to "ユーザ登録する", signup_path, class:"btn btn-large btn-primary" %>
+    </p>
   </div>
 <% end %>

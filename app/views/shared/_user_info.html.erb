@@ -1,5 +1,14 @@
-<a href=" <%= user_path(@user) %>">
-  <h2><%= @user.name %></h2>
-</a>
-  <%= @user.userid %>
-<%= render '/shared/stats' %>
+<div class="user-info">
+    <div>
+      <% if @user.image? %>
+          <%= image_tag @user.image.url(:thumb) %>
+        <% else %>
+          <%= image_tag("egg.png", width: "50", height: "50") %>
+      <% end %>
+    </div>
+  <a href=" <%= user_path(@user) %>">
+    <h2><%= @user.name %></h2>
+  </a>
+    <%= @user.userid %>
+  <%= render '/shared/stats' %>
+</div>
