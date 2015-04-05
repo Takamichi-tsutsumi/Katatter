@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="avator">
+
+  </div>
+  <span class="user">
+    <%= link_to tweet.user.name, tweet.user %> <small> <%= tweet.user.userid %> </small>
+  </span><br>
+  <span class="timestamp">
+    <small>Tweeted <%= time_ago_in_words(tweet.created_at) %> ago.</small>
+  </span>
+</div>

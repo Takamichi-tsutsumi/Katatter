@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :favorite_relations, foreign_key: "user_favorite_id", dependent: :destroy
+  has_many :favorite_tweets, through: :favorite_relations, source: :favorite_tweet
+  has_many :reverse_favorite_relations, foreign_key: "favorite_tweet_id", class_name: "FavoriteRelation", dependent: :destroy
+  has_many :user_favorites, through: :reverse_favorite_relations, source: :user_favorite
 
   before_save { self.email = email.downcase}
   before_create :create_remember_token
@@ -57,6 +61,19 @@ class User < ActiveRecord::Base
   def feed
     Tweet.from_users_followed_by(self)
   end
+
+  def favorite!(tweet)
+    favorite_relations.create!(favorite_tweet_id: tweet.id)
+  end
+
+  def unfavorite!(tweet)
+    favorite_relations.find_by(favorite_tweet_id: tweet.id).destroy
+  end
+
+  def favorite?(tweet)
+    favorite_relations.find_by(favorite_tweet_id: tweet.id)
+  end
+
 
   private
 

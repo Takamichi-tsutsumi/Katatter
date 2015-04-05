@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources 'users' do
     member do
-      get :following, :followers
+      get :following, :followers, :favorites
     end
   end
+  resources 'favorite_relations', only: [:create, :destroy]
   resources 'sessions', only: [:new, :create, :destroy]
   resources 'tweets'
   resources 'relationships', only: [:create, :destroy]

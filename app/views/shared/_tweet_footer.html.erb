@@ -1,0 +1,13 @@
+<div class="tweet-footer">
+  <div class="favorite">
+    <% if tweet.favorite?(tweet) %>
+    <%= render 'unfavorite' %>
+    <% else %>
+    <%= render 'favorite' %>
+    <% end %>
+    <%= tweet.users.count %>
+  </div>
+  <% if current_user?(tweet.user) %>
+    <%= link_to "消す", tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: tweet.tubuyaki %>
+  <% end %>
+</div>

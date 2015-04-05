@@ -14,8 +14,12 @@
   </a>
   <a href="<%= user_path(@user) %>">
     ツイート
-    <strong id="tweets" class="stats">
+    <strong id="tweets" class="stat">
       <%= @user.tweets.count %>
     </strong>
   </a>
+  お気に入り
+  <strong id="favorites" class="stat">
+    <%= @user.favorite_tweets.count %>
+  </strong>
 </div>
