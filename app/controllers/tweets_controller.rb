@@ -32,6 +32,12 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
   end
 
+  def favorites
+    @title = "お気に入りしたユーザー"
+    @tweet = Tweet.find(params[:id])
+    @users = @tweet.user_favorites.paginate(page: params[:page])
+  end
+
   private
 
   def tweet_params

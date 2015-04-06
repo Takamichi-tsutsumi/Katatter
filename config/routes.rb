@@ -6,9 +6,15 @@ Rails.application.routes.draw do
   end
   resources 'favorite_relations', only: [:create, :destroy]
   resources 'sessions', only: [:new, :create, :destroy]
-  resources 'tweets'
+  resources 'tweets' do
+    member do
+      get :favorites
+    end
+  end
   resources 'relationships', only: [:create, :destroy]
+
   root 'static_pages#home'
+
   match '/help', to: 'static_pages#help', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

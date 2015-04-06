@@ -41,6 +41,12 @@ gem 'ransack'
 gem 'rmagick'
 
 gem 'jquery-ui-rails'
+
+gem 'cloudinary'
+
+gem 'heroku'
+
+gem 'iconv'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -16,18 +16,22 @@
     </span>
 
     <% if current_user?(tweet.user) %>
-      <%= link_to "消す", tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: tweet.tubuyaki %>
+      <%= link_to "消す", tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: tweet.tubuyaki %><br>
+    <div class="favorite-star">
+      ☆
+    </div>
     <% else %>
       <% if current_user.favorite?(tweet) %>
         <%= form_for(current_user.favorite_relations.find_by(favorite_tweet_id: tweet.id), html: { method: :delete } ) do |f| %>
-        <%= f.submit "★", class: "btn btn-primary" %>
+        <%= f.submit "★", class: "btn btn-primary btn-sm" %>
         <% end %>
       <% else %>
         <%= form_for(current_user.favorite_relations.build(favorite_tweet_id: tweet.id)) do |f| %>
         <div> <%= f.hidden_field :favorite_tweet_id %> </div>
-          <%= f.submit "☆", class: "btn btn-primary" %>
+          <%= f.submit "☆", class: "btn btn-primary btn-sm" %>
         <% end %>
       <% end %>
     <% end %>
+    <%= link_to "#{ tweet.user_favorites.count }", favorites_tweet_path(tweet.id) %>
   </a>
 </li>
