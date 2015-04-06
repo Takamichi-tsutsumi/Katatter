@@ -13,7 +13,7 @@
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
-    <% unless current_user?(@user) %>
+    <!-- <% unless current_user?(@user) %>
       <div class="follow_form">
         <% if current_user.following?(@user) %>
           <%= render 'unfollow' %>
@@ -21,6 +21,6 @@
           <%= render 'follow' %>
         <% end %>
       </div>
-    <% end %>
+    <% end %> -->
   <% end %>
 </li>
