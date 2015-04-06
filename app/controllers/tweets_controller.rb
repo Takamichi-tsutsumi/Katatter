@@ -21,7 +21,7 @@ class TweetsController < ApplicationController
 
   def index
     @search = Tweet.search(params[:q])
-    @tweets = @search.result.paginate(page: params[:page])
+    @tweets = @search.result.paginate(params[:page])
     respond_to do |format|
       format.html
       format.json { render json: @topics }
@@ -35,7 +35,7 @@ class TweetsController < ApplicationController
   def favorites
     @title = "お気に入りしたユーザー"
     @tweet = Tweet.find(params[:id])
-    @users = @tweet.user_favorites.paginate(page: params[:page])
+    @users = @tweet.user_favorites.paginate(params[:page])
   end
 
   private

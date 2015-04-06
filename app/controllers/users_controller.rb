@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def index
     @search = User.search(params[:q])
-    @users = @search.result.paginate(page: params[:page])
+    @users = @search.result.paginate(params[:page])
 
     respond_to do |format|
       format.html
@@ -42,8 +42,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tweets = @user.tweets.paginate(page: params[:page], per_page: 10)
-    # @feed_items = @user.feed.paginate(page: params[:page])
+    @tweets = @user.tweets.page(page: params[:page], per_page: 10)
+    # @feed_items = @user.feed.paginate(params[:page])
   end
 
   def destroy
@@ -55,21 +55,21 @@ class UsersController < ApplicationController
   def following
     @title = "フォローしてるユーザー"
     @user = User.find(params[:id])
-    @users = @user.followed_users.paginate(page: params[:page])
+    @users = @user.followed_users.paginate(params[:page])
     render 'show_follow'
   end
 
   def followers
     @title ="フォロワー"
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers.paginate(params[:page])
     render 'show_follow'
   end
 
   def favorites
     @title = "お気に入りツイート"
     @user = User.find(params[:id])
-    @tweets = @user.favorite_tweets.paginate(page: params[:page])
+    @tweets = @user.favorite_tweets.paginate(params[:page])
     render 'show_tweets'
   end
 

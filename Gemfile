@@ -28,9 +28,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt-ruby'
-gem 'will_paginate'
 
-gem 'bootstrap-will_paginate'
+gem 'will-paginate'
 
 gem 'carrierwave'
 
@@ -47,6 +46,10 @@ gem 'cloudinary'
 gem 'heroku'
 
 gem 'iconv'
+
+# gem 'kaminari'
+
+gem 'paginate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
