@@ -38,6 +38,7 @@ class TweetsController < ApplicationController
     @users = @tweet.user_favorites.paginate(page: params[:page])
   end
 
+
   private
 
   def tweet_params

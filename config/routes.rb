@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     member do
       get :favorites
     end
+    resources :reply_relations
   end
+  # resources 'reply_relations', only: :create
   resources 'relationships', only: [:create, :destroy]
 
   root 'static_pages#home'

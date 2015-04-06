@@ -1,0 +1,9 @@
+<% @replied_tweet = Tweet.find(params[:tweet_id]) %>
+<%= @replied_tweet.id %>
+<%= form_for(@reply_tweet) do |f| %>
+  <div class="field">
+    <%= f.text_area :tubuyaki, default: "#{@replied_tweet.user.userid}" %>
+    <%= f.file_field :image %>
+  </div>
+  <%= f.submit "リプライ", clss: "btn btn-primary" %>
+<% end %>

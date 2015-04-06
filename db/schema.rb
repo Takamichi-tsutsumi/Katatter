@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405033607) do
+ActiveRecord::Schema.define(version: 20150406084733) do
 
   create_table "favorite_relations", force: :cascade do |t|
     t.integer  "user_favorite_id"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20150405033607) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "reply_relations", force: :cascade do |t|
+    t.integer  "replied_tweet_id"
+    t.integer  "reply_tweet_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "reply_relations", ["replied_tweet_id"], name: "index_reply_relations_on_replied_tweet_id"
+  add_index "reply_relations", ["reply_tweet_id"], name: "index_reply_relations_on_reply_tweet_id"
 
   create_table "tweets", force: :cascade do |t|
     t.string   "tubuyaki"
