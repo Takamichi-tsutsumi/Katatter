@@ -16,7 +16,7 @@
       <%= wrap(simple_format(@tweet.tubuyaki)) %>
     </span><br>
     <span class="timestamp">
-      <small>Tweeted <%= time_ago_in_words(tweet.created_at) %> ago.</small>
+      <small>Tweeted <%= time_ago_in_words(@tweet.created_at) %> ago.</small>
     </span>
     <% unless @tweet.image.to_s.empty? %>
     <span>
