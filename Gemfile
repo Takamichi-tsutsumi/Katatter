@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt-ruby'
 
-gem 'will-paginate'
+gem 'will_paginate-bootstrap'
 
 gem 'carrierwave'
 
