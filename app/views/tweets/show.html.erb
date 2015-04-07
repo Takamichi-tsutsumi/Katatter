@@ -1,12 +1,18 @@
-<div class="row">
+<div class="tweets">
+<%= render @tweet %>
+<% unless @tweet.image.to_s.empty? %>
+<span>
+  <%= image_tag @tweet.image.url  %>
+</span>
+<% end %>
+</div>
+<!-- <div class="row">
   <div class="col-md-4">
     <% if @tweet.user.image? %>
-    <%= image_tag @tweet.user.image.url(:thumb) %>
+      <%= image_tag @tweet.user.image.url(:thumb) %>
     <% else %>
-    <%= image_tag("egg.png", width: "50", height: "50")  %>
+      <%= image_tag("egg.png", width: "50", height: "50")  %>
     <% end %>
-  </div>
-  <div class="col-md-8">
     <span class="user">
       <%= link_to @tweet.user.name, @tweet.user %>
       <small><%= @tweet.user.userid %></small>
@@ -17,14 +23,16 @@
     <span class="timestamp">
       <small>Tweeted <%= time_ago_in_words(@tweet.created_at) %> ago.</small>
     </span>
-    <% unless @tweet.image.to_s.empty? %>
-    <span>
-      <%= image_tag @tweet.image.url  %>
-    </span>
-    <% end %>
+
+    <div class="row">
+
     <% if current_user?(@tweet.user) %>
+    <div class="col-md-1">
       <%= link_to "消す", @tweet, method: :delete, data: { confirm: "本当に消しますか？"}, title: @tweet.tubuyaki %>
+    </div>
+    <div class="col-md-3">
       <div class="favorites">
+        <%= link_to "#{@tweet.user_favorites.count}", favorites_tweet_path %>
         ☆
       </div>
     <% else %>
@@ -38,7 +46,20 @@
           <%= f.submit "☆", class: "btn  btn-primary" %>
         <% end %>
       <% end %>
+      <%= link_to "#{@tweet.user_favorites.count}", favorites_tweet_path %>
+    <% end %> -->
+    <!-- </div>
+    <%= link_to "リプライ", reply_tweet_path, class: "btn btn-primary" %>
+    </div>
+  </div> -->
+  <div class="col-md-8">
+    <% if @reply_tweets.any? %>
+      <h2>リプライ</h2>
+      <%= @reply_tweets.each do |tweet| %>
+      <ul class="tweets">
+        <%= render tweet %>
+      </ul>
+      <% end %>
     <% end %>
-    <%= link_to "#{@tweet.user_favorites.count}", favorites_tweet_path %>
-
+  </div>
 </div>

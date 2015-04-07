@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources 'sessions', only: [:new, :create, :destroy]
   resources 'tweets' do
     member do
-      get :favorites
+      get :favorites, :reply
     end
-    resources :reply_relations
+    # resources :reply_relations
   end
   # resources 'reply_relations', only: :create
   resources 'relationships', only: [:create, :destroy]

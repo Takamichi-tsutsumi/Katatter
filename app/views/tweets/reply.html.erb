@@ -1,0 +1,23 @@
+
+<% @replied_tweet = Tweet.find(params[:id]) %>
+<div class="tweets">
+<%= render @replied_tweet %>
+</div>
+<%= form_for(@tweet) do |f| %>
+  <div class="field">
+    <%= f.text_area :tubuyaki, default: "#{@replied_tweet.user.userid}" %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :replied_tweet_id, value: "#{@replied_tweet.id}", readonly: true %>
+  </div>
+  <%= f.submit "Go", class: "btn btn-primary" %>
+<% end %>
+<div class="col-md-8">
+  <% if @reply_tweets.any? %>
+    <h2>リプライ</h2>
+    <%= @reply_tweets.each do |tweet| %>
+    <ul class="tweets">
+      <%= render tweet %>
+    </ul>
+    <% end %>
+  <% end %>
+</div>

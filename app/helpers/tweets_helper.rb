@@ -10,6 +10,11 @@ module TweetsHelper
   def self.reply!(other_tweet)
     self.reply_relations.create!( replied_tweet_id: other_tweet.id )
   end
+  # @reply_tweets = Tweet.reorder(created_at: :asc).where(replied_tweet_id: params[:id])
+
+  def reply_tweets(tweet)
+    @replytweets = Tweet.where(replied_tweet_id: tweet.id)
+  end
 
  private
 
@@ -19,6 +24,7 @@ module TweetsHelper
      (text.length < max_width) ? text :
                                  text.scan(regex).join(zero_width_space)
    end
+
 
    def tweet_params
      params.require(:tweet).permit(:tubuyaki, :id, :user_id, :image, :image_cache, :remove_image)
