@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405033607) do
+ActiveRecord::Schema.define(version: 20150407005015) do
 
   create_table "favorite_relations", force: :cascade do |t|
     t.integer  "user_favorite_id"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20150405033607) do
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
+  create_table "reply_relations", force: :cascade do |t|
+    t.integer  "replied_tweet_id"
+    t.integer  "reply_tweet_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "reply_relations", ["replied_tweet_id"], name: "index_reply_relations_on_replied_tweet_id"
+  add_index "reply_relations", ["reply_tweet_id"], name: "index_reply_relations_on_reply_tweet_id"
+
   create_table "tweets", force: :cascade do |t|
     t.string   "tubuyaki"
     t.integer  "user_id"
@@ -43,18 +53,22 @@ ActiveRecord::Schema.define(version: 20150405033607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "image"
+    t.integer  "replied_tweet_id"
   end
+
+  add_index "tweets", ["replied_tweet_id"], name: "index_tweets_on_replied_tweet_id"
+
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "remember_token"
     t.string   "userid"
     t.string   "image"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",            default: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"

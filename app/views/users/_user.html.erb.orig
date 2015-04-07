@@ -14,7 +14,11 @@
                                   data: { confirm: "You sure?" } %>
   <% end %>
     <!-- <% unless current_user?(@user) %>
+<<<<<<< HEAD
+      <div class="follow_form">
+=======
       <div id="follow_form">
+>>>>>>> make_reply_system
         <% if current_user.following?(@user) %>
           <%= render '/users/unfollow' %>
         <% else %>

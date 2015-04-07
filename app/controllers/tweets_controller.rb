@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
     @tweet = @user.tweets.build(tweet_params)
     if @tweet.save
       flash[:success] = "Tweeted!"
-      redirect_to root_path
+      redirect_to(:back)
     else
       @feed_items = []
       render 'static_pages/home'
@@ -30,6 +30,7 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
+    @reply_tweets = Tweet.reorder(created_at: :asc).where(replied_tweet_id: params[:id])
   end
 
   def favorites
@@ -38,10 +39,17 @@ class TweetsController < ApplicationController
     @users = @tweet.user_favorites.paginate(params[:page])
   end
 
+  def  reply
+    @tweet = Tweet.find(params[:id])
+    @reply_tweets = Tweet.reorder(created_at: :asc).where(replied_tweet_id: params[:id])
+    @tweet = Tweet.new
+  end
+
+
   private
 
   def tweet_params
-    params.require(:tweet).permit(:tubuyaki, :id, :user_id, :image, :image_cache, :remove_image)
+    params.require(:tweet).permit(:tubuyaki, :id, :user_id, :image, :image_cache, :remove_image, :replied_tweet_id)
   end
 
   def correct_user
